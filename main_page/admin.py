@@ -2,33 +2,25 @@ from django.contrib import admin
 
 # Register your models here.
 from django.contrib import admin
-from .models import Category, Dish
+from .models import Category, Dish, Menu, Events, Specials, About, WhoWeAre
 
 
-# варіант адмінки на швидкоруч
-# admin.site.register(Category)
-# admin.site.register(Dish)
-
-# варіант адмінки, щоб таблиця Dish була вкладена в Category(підпорядкована,вбудована)
-# створюємо клас
 class DishAdmin(admin.TabularInline):
     model = Dish
-    # вказуємо поле привязки - спосок, в якому буде назва поля
     raw_id_fields = ['category']
+
+
+class CategoryInMenu(admin.TabularInline):                                     # нове
+    model = Category
+    raw_id_fields = ['menu']
 
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     inlines = [DishAdmin]
-
-    # виводить в рядки в адмінці наступні поля
     list_display = ['title', 'position', 'is_visible']
-
-    # дозволяє редагувати прямо в рядку наступні поля
     list_editable = ['position', 'is_visible']
 
-
-# можна додати в адмінку таблицю dish ще раз як просту таблицю, а не підпорядковану
 
 @admin.register(Dish)
 class DishAllAdmin(admin.ModelAdmin):
@@ -37,8 +29,49 @@ class DishAllAdmin(admin.ModelAdmin):
     list_display = ['title', 'position', 'is_visible', 'ingredients', 'desc', 'price', 'photo']
     list_editable = ['position', 'is_visible', 'price']
 
-    # можна додати панель фільтрів
     list_filter = ['category', 'is_visible']
 
-    # якщо таблиця довга, розбити її на сторінки
-    # list_per_page = 2
+
+@admin.register(Menu)                                                     # нове
+class MenuAdmin(admin.ModelAdmin):
+    model = Menu
+    inlines = [CategoryInMenu]
+    list_display = ['title', 'is_visible']
+    list_editable = ['is_visible']
+    list_filter = ['is_visible']
+
+
+@admin.register(Events)                                                     # нове
+class EventsAdmin(admin.ModelAdmin):
+    model = Events
+
+    list_display = ['title', 'position', 'is_visible', 'desc', 'price', 'photo']
+    list_editable = ['position', 'is_visible', 'price']
+    list_filter = ['is_visible']
+
+
+@admin.register(Specials)                                                     # нове
+class SpecialsAdmin(admin.ModelAdmin):
+    model = Specials
+
+    list_display = ['title', 'position', 'is_visible', 'desc', 'price', 'photo']
+    list_editable = ['position', 'is_visible']
+    list_filter = ['is_visible']
+
+
+@admin.register(About)                                                     # нове
+class AboutAdmin(admin.ModelAdmin):
+    model = About
+    list_display = ['title']
+
+
+@admin.register(WhoWeAre)                                                     # нове
+class AdminWhoWeAre(admin.ModelAdmin):
+    model = WhoWeAre
+
+    list_display = ['name', 'position', 'is_visible', 'desc', 'photo']
+    list_editable = ['position', 'is_visible']
+    list_filter = ['is_visible']
+
+
+
