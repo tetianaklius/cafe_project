@@ -64,21 +64,6 @@ class Dish(models.Model):
         ordering = ('category', 'position')
 
 
-class Specials(models.Model):                                                            # нове
-    title = models.CharField(max_length=50, unique=True, db_index=True)
-    position = models.SmallIntegerField()
-    is_visible = models.BooleanField(default=True)
-    ingredients = models.CharField(max_length=255)
-    desc = models.TextField(max_length=500, blank=True)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    photo = models.ImageField(upload_to='specials', blank=True)
-
-    dish = models.ForeignKey(Dish, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f'{self.title}'
-
-
 class About(models.Model):                                                         # нове
     title = models.CharField(max_length=100)
     desc = models.TextField(max_length=2000, blank=False)

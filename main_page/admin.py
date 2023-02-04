@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from django.contrib import admin
-from .models import Category, Dish, Menu, Events, Specials, About, WhoWeAre
+from .models import Category, Dish, Menu, Events, About, WhoWeAre
 
 
 class DishAdmin(admin.TabularInline):
@@ -47,15 +47,6 @@ class EventsAdmin(admin.ModelAdmin):
 
     list_display = ['title', 'position', 'is_visible', 'desc', 'price', 'photo']
     list_editable = ['position', 'is_visible', 'price']
-    list_filter = ['is_visible']
-
-
-@admin.register(Specials)                                                     # нове
-class SpecialsAdmin(admin.ModelAdmin):
-    model = Specials
-
-    list_display = ['title', 'position', 'is_visible', 'desc', 'price', 'photo']
-    list_editable = ['position', 'is_visible']
     list_filter = ['is_visible']
 
 
