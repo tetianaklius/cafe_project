@@ -1,0 +1,61 @@
+<!-- ======= Specials Section ======= -->
+<section id="specials" class="specials">
+    <div class="container">
+        <div class="section-title">
+            <h2>Check our <span>Specials</span></h2>
+            <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3">
+                <ul class="nav nav-tabs flex-column">
+                {% for item in special_dishes %}
+                    {% if forloop.first %}
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-bs-toggle="tab" href="#tab-{{ item.pk }}">{{ item.title }}</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#tab-{{ item.pk }}">{{ item.title }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-lg-9 mt-4 mt-lg-0">
+            <div class="tab-content">
+                {% for item in special_dishes %}
+                    {% if forloop.first %}
+                        <div class="tab-pane active show" id="tab-{{ item.pk }}">
+                            <div class="row">
+                                <div class="col-lg-8 details order-2 order-lg-1">
+                                    <h3>{{ item.title }}</h3>
+                                    <p class="fst-italic">{{ item.ingredients }}</p>
+                                    <p>{{ item.desc }}</p>
+                                </div>
+                                <div class="col-lg-4 text-center order-1 order-lg-2">
+                                    <img src={{ item.photo.url }} alt="" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="tab-pane" id="tab-{{ item.pk }}">
+                            <div class="row">
+                                <div class="col-lg-8 details order-2 order-lg-1">
+                                    <h3>{{ item.title }}</h3>
+                                    <p class="fst-italic">{{ item.ingredients }}</p>
+                                    <p>{{ item.desc }}</p>
+                                </div>
+                                <div class="col-lg-4 text-center order-1 order-lg-2">
+                                    <img src={{ item.photo.url }} alt="" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+              </div>
+            </div>
+    </div>
+</section>
+<!-- End Specials Section -->

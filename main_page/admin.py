@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from django.contrib import admin
-from .models import Category, Dish, Menu, Events, About, WhoWeAre
+from .models import Category, Dish, Events, About, WhoWeAre
 
 
 class DishAdmin(admin.TabularInline):
@@ -10,9 +10,9 @@ class DishAdmin(admin.TabularInline):
     raw_id_fields = ['category']
 
 
-class CategoryInMenu(admin.TabularInline):                                     # нове
-    model = Category
-    raw_id_fields = ['menu']
+# class CategoryInMenu(admin.TabularInline):                                     # нове
+#     model = Category
+#     raw_id_fields = ['menu']
 
 
 @admin.register(Category)
@@ -32,13 +32,13 @@ class DishAllAdmin(admin.ModelAdmin):
     list_filter = ['category', 'is_visible']
 
 
-@admin.register(Menu)                                                     # нове
-class MenuAdmin(admin.ModelAdmin):
-    model = Menu
-    inlines = [CategoryInMenu]
-    list_display = ['title', 'is_visible']
-    list_editable = ['is_visible']
-    list_filter = ['is_visible']
+# @admin.register(Menu)                                                     # нове
+# class MenuAdmin(admin.ModelAdmin):
+#     model = Menu
+#     inlines = [CategoryInMenu]
+#     list_display = ['title', 'is_visible']
+#     list_editable = ['is_visible']
+#     list_filter = ['is_visible']
 
 
 @admin.register(Events)                                                     # нове

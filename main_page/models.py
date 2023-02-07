@@ -1,20 +1,18 @@
 from django.db import models
-
-import os.path
-import uuid
+from django.core.validators import RegexValidator
 
 from django.db import models
 
 
-class Menu(models.Model):                                                            # нове
-    title = models.CharField(max_length=30, unique=True)
-    is_visible = models.BooleanField(default=True)
+# class Menu(models.Model):
+#     title = models.CharField(max_length=30, unique=True)
+#     is_visible = models.BooleanField(default=True)
+#
+#     def __str__(self):
+#         return f'{self.title}'
 
-    def __str__(self):
-        return f'{self.title}'
 
-
-class Events(models.Model):                                                            # нове
+class Events(models.Model):
     title = models.CharField(max_length=50, unique=True)
     position = models.SmallIntegerField()
     desc = models.TextField(max_length=500, blank=True)
@@ -30,7 +28,7 @@ class Category(models.Model):
     title = models.CharField(max_length=50, unique=True, db_index=True)
     position = models.SmallIntegerField(unique=True)
     is_visible = models.BooleanField(default=True)
-    menu = models.ForeignKey(Menu, on_delete=models.CASCADE)                               # нове
+    # menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.title}'
@@ -38,7 +36,7 @@ class Category(models.Model):
     class Meta:
         ordering = ('position',)
 
-    def __iter__(self):                                                                # нове
+    def __iter__(self):
         for item in self.dishes.all():
             yield item
 
@@ -64,7 +62,7 @@ class Dish(models.Model):
         ordering = ('category', 'position')
 
 
-class About(models.Model):                                                         # нове
+class About(models.Model):
     title = models.CharField(max_length=100)
     desc = models.TextField(max_length=2000, blank=False)
     is_visible = models.BooleanField(default=True)
@@ -74,7 +72,7 @@ class About(models.Model):                                                      
         return "About"
 
 
-class WhoWeAre(models.Model):                                                         # нове
+class WhoWeAre(models.Model):
     title = models.CharField(max_length=50, unique=True, db_index=True)
     position = models.SmallIntegerField()
     is_visible = models.BooleanField(default=True)
@@ -85,5 +83,20 @@ class WhoWeAre(models.Model):                                                   
     def __str__(self):
         return f'{self.name}'
 
+
+class Reservation(models.Model):
+    phone_validator = RegexValidator(regex=r"", message="")
+
+    name = models.CharField(max_length=50)
+    phone = models.CharField(max_length=20, validators=[phone_validator])
+    persons = models.SmallIntegerField()
+    message = models.TextField(max_length=250, blank=True)
+
+    date = models.DateField(auto_now_add=True)
+    date_processing = models.DateField(auto_now=True)
+    is_processed = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ("-date", )
 
 
