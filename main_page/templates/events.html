@@ -5,18 +5,17 @@
         <div class="section-title">
             <h2>Organize Your <span>Events</span> in our Restaurant</h2>
         </div>
-
         <div class="events-slider swiper">
             <div class="swiper-wrapper">
-
-                <div class="swiper-slide">
-                    <div class="row event-item">
-                        <div class="col-lg-6">
-                            {% for item in events %}
-                                <img src="{{ item.photo }}" class="img-fluid" alt="Тут міститься фото зазначеного заходу">
-                        </div>
-                        <div class="col-lg-6 pt-4 pt-lg-0 content">
-                            <h3>{{ item.title }}</h3>
+                {% for item in events %}
+                    <div class="swiper-slide">
+                        <div class="row event-item">
+                            <div class="col-lg-6">
+                                <img src="{{ item.photo.url }}" class="img-fluid"
+                                     alt="Тут міститься фото зазначеного заходу">
+                            </div>
+                            <div class="col-lg-6 pt-4 pt-lg-0 content">
+                                <h3>{{ item.title }}</h3>
                                 <div class="price">
                                     <p><span>{{ item.price }} UAH</span></p>
                                 </div>
@@ -24,20 +23,20 @@
                                     {{ item.sup_desc }}
                                 </p>
                                 <ul>
-                                    <li><i class="bi bi-check-circle"></i> {{ item.point_text_1 }}
-                                    </li>
-                                    <li><i class="bi bi-check-circle"></i> {{ item.point_text_2 }}
-                                    </li>
-                                    <li><i class="bi bi-check-circle"></i> {{ item.point_text_3 }}
-                                    </li>
+                                    <li><i class="bi bi-check-circle"></i> {{ item.point_text_1 }}</li>
+                                    <li><i class="bi bi-check-circle"></i> {{ item.point_text_2 }}</li>
+                                    <li><i class="bi bi-check-circle"></i> {{ item.point_text_3 }}</li>
                                 </ul>
-                            {% endfor %}
+                                <p class="fst-italic">
+                                    {{ item.inf_desc }}
+                                </p>
+                                <div class="swiper-pagination"></div>
+                            </div>
                         </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-             </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-    </div>
     </div>
 </section>
 <!-- End Events Section -->

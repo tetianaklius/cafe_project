@@ -9,7 +9,7 @@
         {% for category in categories %}
             {% if forloop.first %}
             <p>Це перша ітерація</p>
-            {% endfor %}
+            {% endif %}
             <h3>{{ category.title }}</h3>
             {% for dish in category %}
             <div>

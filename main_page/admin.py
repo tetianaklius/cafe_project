@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from django.contrib import admin
-from .models import Category, Dish, Events, About, Chefs, Gallery, Reservation, Contacts
+from .models import Category, Dish, Events, About, Chefs, Gallery, Reservation, Contacts, Testimonials
 
 # admin.site.register(Reservation)
 
@@ -65,4 +65,5 @@ class GalleryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Contacts)
+admin.site.register(Testimonials)
 

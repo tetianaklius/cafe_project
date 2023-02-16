@@ -4,31 +4,28 @@
 
         <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
             <div class="swiper-wrapper">
-
+            {% for item in testimonials %}
                 <div class="swiper-slide">
                     <div class="testimonial-item">
-                        {% for item in testimonials %}
-                            <img src="media/testimonials/{{ item.author }}" class="testimonial-img" alt="">
-                            <h3>{{ item.author }}</h3>
-                            <h4>{{ item.author_desc }}</h4>
-                            <div class="stars">
-                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                    class="bi bi-star-fill"></i>
-                            </div>
-                            <p>
-                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                {{ item.quote }}
-                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                            </p>
-                        {% endfor %}
+                        <img src="{{ item.photo.url }}" class="testimonial-img" alt="Фото людини, яка залишила відгук">
+                        <h3>{{ item.author }}</h3>
+                        <h4>{{ item.author_desc }}</h4>
+                        <div class="stars">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                class="bi bi-star-fill"></i>
+                        </div>
+                        <p>
+                            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                            {{ item.quote }}
+                            <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                        </p>
                     </div>
                 </div><!-- End testimonial item -->
+            {% endfor %}
             </div>
-
             <div class="swiper-pagination"></div>
         </div>
 
     </div>
-</section>
-<!-- End Testimonials Section -->
+</section><!-- End Testimonials Section -->

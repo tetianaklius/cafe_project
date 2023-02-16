@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Category, Dish, Gallery, Reservation, About, Events, Chefs, WhyUs, Contacts
+from .models import Category, Dish, Gallery, Reservation, About, Events, Chefs, WhyUs, Contacts, Testimonials
 from .forms import ReservationForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 
@@ -18,25 +18,27 @@ def main(request):
     categories = Category.objects.filter(is_visible=True)
     dishes = Dish.objects.filter(is_visible=True)
     special_dishes = Dish.objects.filter(is_visible=True, is_special=True)
-    photos = list(Gallery.objects.all().order_by('?')[:8])
+    gallery = list(Gallery.objects.all().order_by('?')[:8])
     form_reserve = ReservationForm()
     about = About.objects.get()
     events = Events.objects.filter(is_visible=True)
     chefs = Chefs.objects.filter(is_visible=True)
     why_us = WhyUs.objects.all()
     contacts = Contacts.objects.get()
+    testimonials = Testimonials.objects.all()
 
     return render(request, "main_page.html", context={
         "categories": categories,
         "dishes": dishes,
         "special_dishes": special_dishes,
         "form_reserve": form_reserve,
-        "photos": photos,
+        "gallery": gallery,
         "about": about,
         "events": events,
         "chefs": chefs,
         "why_us": why_us,
         "contacts": contacts,
+        "testimonials": testimonials,
     })
 
 

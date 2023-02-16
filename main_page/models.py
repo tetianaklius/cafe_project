@@ -14,7 +14,7 @@ class Events(models.Model):
     inf_desc = models.TextField(max_length=500, blank=True)
     is_visible = models.BooleanField(default=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    photo = models.ImageField(upload_to='events', blank=True)
+    photo = models.ImageField(upload_to='events', blank=False)
 
     def __str__(self):
         return f'{self.title}'
@@ -105,8 +105,8 @@ class Gallery(models.Model):
 
 
 class Chefs(models.Model):
-    title = models.CharField(max_length=50, unique=True, db_index=True)
-    com_desc = models.TextField(max_length=200, blank=False)
+    title = models.CharField(max_length=50, unique=True, db_index=True, blank=True)
+    com_desc = models.TextField(max_length=200, blank=True)
     position = models.SmallIntegerField()
     is_visible = models.BooleanField(default=True)
     name = models.TextField(max_length=100, blank=False)
@@ -136,6 +136,8 @@ class Testimonials(models.Model):
     author = models.TextField(max_length=70, blank=False)
     author_desc = models.TextField(max_length=500, blank=False)
     quote = models.TextField(max_length=2000, blank=False)
+    photo = models.ImageField(upload_to='testimonials', blank=False)
 
-    
+    def __str__(self):
+        return f'{self.author}'
 
