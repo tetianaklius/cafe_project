@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+
+{% block main_content %}
+    <section id="reserves">
+        <div class="container">
+            <div class="col-md-10 col-md-offset-1">
+                {% for item in reservations %}
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a href="{% url "main_page:update_reservation" pk=item.pk %}">
+                                <button type="button" class="btn btn-primary">Закрити замовлення</button>
+                            </a>
+                        </div>
+                        <div class="col-md-3">{{ item.name }}</div>
+                        <div class="col-md-3">{{ item.phone }}</div>
+                        <div class="col-md-3">{{ item.date|date:"d-m-Y" }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9"><p>{{ item.message }}</p></div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
