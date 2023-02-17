@@ -7,6 +7,7 @@
             <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque
                 vitae autem.</p>
         </div>
+        {% if user.username %}
         <form method="post" role="form" class="php-email-form">
             {% csrf_token %}
             <div class="row">
@@ -38,7 +39,9 @@
                 <button type="submit">Send Message</button>
             </div>
         </form>
-
+        {% else %}
+                <p style="text-align:center;"><b>Увійдіть, будь ласка, в систему, щоб зарезервувати столик</b></p>
+        {% endif %}
     </div>
 </section>
 <!-- End Book A Table Section -->
