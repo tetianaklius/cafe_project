@@ -1,3 +1,4 @@
+{% load static %}
 <!-- ======= Gallery Section ======= -->
 <section id="gallery" class="gallery">
     <div class="container-fluid">
@@ -12,7 +13,7 @@
                 <div class="col-lg-3 col-md-4">
                     <div class="gallery-item">
                         <a href="{{ item.photo.url }}" class="gallery-lightbox">
-                            <img src="{{ item.photo.url }}" alt="" class="img-fluid">
+                            <img src="{{ item.photo.url }}" alt={% static "assets/img/gallery/gallery-1.jpg" %} class="img-fluid">
                         </a>
                     </div>
                 </div>
